@@ -17,7 +17,8 @@ create table if not exists sys_parameter (
   SUBJECTS varchar (10) comment '主题:用于分组',
   COMMENTS VARCHAR (50) comment '备注',
   DESCRIPTION VARCHAR (50) comment '描述',
-  CREATE_TIME timestamp not null default current_timestamp
+  CREATE_TIME timestamp not null default current_timestamp,
+  index index_param_name (PARAM_NAME)
 ) engine = innodb charset = utf8 comment '系统参数表' ;
 
 create table if not exists sys_dict (
@@ -40,11 +41,13 @@ create table if not exists drun_orders (
   COMMISSION decimal (10, 2) comment '订单佣金',
   SERVICE_CHARGE decimal (10, 2) comment '平台服务费',
   ORDER_POSITION varchar (50) comment '订单位置',
-  TELPHONE varchar (20) comment '联系电话',
+  TELEPHONE varchar (20) comment '联系电话',
   ORDER_STATUS varchar (2) not null default '0' comment '订单状态；-1：取消；0：初始化；1：已付款待接单；2：已接单；3：待确认；4：完成',
-  CREATE_TMIME datetime not null,
-  UPDATE_TIME datetime not null
+  CREATE_TIME datetime not null,
+  UPDATE_TIME datetime not null,
+  index index_user_key (USER_KEY)
 ) engine = innodb charset = utf8 comment '订单表' ;
+
 
 create table if not exists drun_users (
   ID int primary key auto_increment,

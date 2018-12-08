@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pengshuai.uurun.ordermanagement.dao.OrderManagementDao">
+    <select id="getOrdersByOrderId" resultType="com.pengshuai.uurun.ordermanagement.entity.Orders">
+        SELECT order_id,user_key,order_content,order_type,order_cost,amount,commission,service_charge,
+        order_position,telephone,order_status,create_time,update_time
+        FROM drun_orders
+        WHERE order_id = #{orderId}
+    </select>
+
+    <select id="getOrdersByUser" resultType="com.pengshuai.uurun.ordermanagement.entity.Orders">
+        SELECT order_id,user_key,order_content,order_type,order_cost,amount,commission,service_charge,
+        order_position,telephone,order_status,create_time,update_time
+        FROM drun_orders
+        WHERE user_key = #{orderId}
+    </select>
+    
+    <insert id="insertOrder" parameterType="com.pengshuai.uurun.ordermanagement.entity.Orders">
+        INSERT INTO drun_orders(USER_KEY,ORDER_CONTENT,ORDER_TYPE,ORDER_COST,AMOUNT,COMMISSION,SERVICE_CHARGE,
+        ORDER_POSITION,TELEPHONE,ORDER_STATUS,CREATE_TIME,UPDATE_TIME)
+        VALUES
+        (#{user_key},#{order_content},#{order_type},#{order_cost},#{amount},#{commission},#{service_charge},
+        #{order_position},#{telephone},#{order_status},#{create_time},#{update_time})
+    </insert>
+
+    <update id="updateOrderById" parameterType="com.pengshuai.uurun.ordermanagement.entity.Orders">
+        UPDATE drun_orders
+        <set>
+            <if test="order_content != null">
+                order_content = #{order_content}
+            </if>
+            <if test="order_type != null">
+                ,order_type = #{order_type}
+            </if>
+            <if test="order_cost != null">
+                ,order_cost = #{order_cost}
+            </if>
+            <if test="amount != null">
+                ,amount = #{amount}
+            </if>
+            <if test="commission != null">
+                ,commission = #{commission}
+            </if>
+            <if test="service_charge != null">
+                ,service_charge = #{service_charge}
+            </if>
+            <if test="order_position != null">
+                ,order_position = #{order_position}
+            </if>
+            <if test="telephone != null">
+                ,telephone = #{telephone}
+            </if>
+            <if test="order_status != null">
+                ,order_status = #{order_status}
+            </if>
+            <if test="update_time != null">
+                ,update_time = #{update_time}
+            </if>
+        </set>
+        WHERE order_id = #{order_id}
+    </update>
+</mapper>
