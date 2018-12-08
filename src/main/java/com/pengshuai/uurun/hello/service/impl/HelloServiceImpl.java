@@ -1,8 +1,8 @@
-package com.pengshuai.hello.service.impl;
+package com.pengshuai.uurun.hello.service.impl;
 
-import com.pengshuai.hello.dao.HelloDao;
-import com.pengshuai.hello.entity.HelloEntity;
-import com.pengshuai.hello.service.HelloService;
+import com.pengshuai.uurun.hello.dao.HelloDao;
+import com.pengshuai.uurun.hello.entity.HelloEntity;
+import com.pengshuai.uurun.hello.service.HelloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

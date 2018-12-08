@@ -2,20 +2,20 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.pengshuai.hello.dao.HelloDao">
-    <select id="queryHello" resultType="com.pengshuai.hello.entity.HelloEntity">
+<mapper namespace="com.pengshuai.uurun.hello.dao.HelloDao">
+    <select id="queryHello" resultType="com.pengshuai.uurun.hello.entity.HelloEntity">
         SELECT id,username,usersex,userage,address,job FROM hello
     </select>
-    <select id="queryHelloById" resultType="com.pengshuai.hello.entity.HelloEntity">
+    <select id="queryHelloById" resultType="com.pengshuai.uurun.hello.entity.HelloEntity">
         SELECT id,username,usersex,userage,address,job FROM hello WHERE id = #{id}
     </select>
     <insert id="insertHello" useGeneratedKeys="true" keyProperty="id"
-            keyColumn="id" parameterType="com.pengshuai.hello.entity.HelloEntity">
+            keyColumn="id" parameterType="com.pengshuai.uurun.hello.entity.HelloEntity">
         INSERT INTO hello (username,usersex,userage,address,job)
         VALUES
         (#{username},#{usersex},#{userage},#{address},#{job})
     </insert>
-    <update id="updateHello" parameterType="com.pengshuai.hello.entity.HelloEntity">
+    <update id="updateHello" parameterType="com.pengshuai.uurun.hello.entity.HelloEntity">
         UPDATE hello
         <set>
             <if test="username!=null">username = #{username}</if>

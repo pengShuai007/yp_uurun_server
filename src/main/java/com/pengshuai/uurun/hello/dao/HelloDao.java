@@ -1,6 +1,6 @@
-package com.pengshuai.hello.dao;
+package com.pengshuai.uurun.hello.dao;
 
-import com.pengshuai.hello.entity.HelloEntity;
+import com.pengshuai.uurun.hello.entity.HelloEntity;
 
 import java.util.List;
 

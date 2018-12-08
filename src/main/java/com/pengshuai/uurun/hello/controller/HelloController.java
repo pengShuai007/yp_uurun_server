@@ -1,7 +1,7 @@
-package com.pengshuai.hello.controller;
+package com.pengshuai.uurun.hello.controller;
 
-import com.pengshuai.hello.entity.HelloEntity;
-import com.pengshuai.hello.service.HelloService;
+import com.pengshuai.uurun.hello.entity.HelloEntity;
+import com.pengshuai.uurun.hello.service.HelloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

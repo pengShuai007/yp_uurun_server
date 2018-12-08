@@ -1,4 +1,4 @@
-package com.pengshuai.hello.entity;
+package com.pengshuai.uurun.hello.entity;
 
 /**
  * Created by YangPeng on 2018/11/27.

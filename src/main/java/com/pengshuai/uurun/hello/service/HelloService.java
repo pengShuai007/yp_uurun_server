@@ -1,6 +1,6 @@
-package com.pengshuai.hello.service;
+package com.pengshuai.uurun.hello.service;
 
-import com.pengshuai.hello.entity.HelloEntity;
+import com.pengshuai.uurun.hello.entity.HelloEntity;
 
 import java.util.List;
 
