@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pengshuai.oracle.hello.dao.HelloOracleDao">
+
+    <select id="listHello" resultType="map">
+        select id, hosnum, user_key, name, sex from bas_user  where rownum <![CDATA[ < ]]>  10
+    </select>
+
+    <update id="updateHello" >
+        update bas_user set name = #{userName} where id = #{id}
+    </update>
+
+</mapper>
