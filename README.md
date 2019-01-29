@@ -5,3 +5,7 @@
 * spring boot 基本配置
 * mybatis基本配置
 * 数据库增删改查操作
+## springboot + mybatis多数据源配置
+20190129
+* 配置mysql、oracle两个数据源
+* 实现不同包下dao层查询不同数据库
