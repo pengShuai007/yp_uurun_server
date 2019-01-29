@@ -18,7 +18,6 @@ public class HelloServiceImpl implements HelloService {
     @Autowired
     private HelloDao helloDao;
 
-    @Transactional(value = "localMysql")
     @Override
     public List<HelloEntity> queryHello() {
         return helloDao.queryHello();
