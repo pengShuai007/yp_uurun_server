@@ -1,5 +1,6 @@
 package com.pengshuai.school.redis;
 
+import com.pengshuai.utils.RedisByJedisUtil;
 import com.pengshuai.utils.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,9 @@ public class RedisTestController{
     @Autowired
     RedisUtil redisUtil;
 
+    @Autowired
+    RedisByJedisUtil redisByJedisUtil;
+
     private static final Logger logger = Logger.getLogger("RedisTestController");
 
     @RequestMapping(value="/test")
@@ -37,6 +41,14 @@ public class RedisTestController{
             e.printStackTrace();
             return "false";
         }
+    }
+
+    @RequestMapping("/testJedis")
+    @ResponseBody
+    public String testJedis(){
+        redisByJedisUtil.set("yang","这娃在学习",0);
+        String value = redisByJedisUtil.get("yang",0);
+        return value;
     }
 
 }
