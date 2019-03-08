@@ -4,10 +4,10 @@ import com.pengshuai.utils.RedisByJedisUtil;
 import com.pengshuai.utils.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.concurrent.*;
 import java.util.logging.Logger;
 
 /**
@@ -46,9 +46,29 @@ public class RedisTestController{
     @RequestMapping("/testJedis")
     @ResponseBody
     public String testJedis(){
-        redisByJedisUtil.set("yang","这娃在学习",0);
+        redisByJedisUtil.set("yang","1",0);
         String value = redisByJedisUtil.get("yang",0);
         return value;
     }
 
+    @RequestMapping("/syncAddRedisValue")
+    public void syncAddRedisValue(){
+//        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(5,20,200, TimeUnit.SECONDS,new ArrayBlockingQueue<Runnable>(5));
+        ExecutorService pool = Executors.newFixedThreadPool(100);
+        for(int i = 0 ; i < 100; i++){
+            pool.execute(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.currentThread().sleep(4000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    redisByJedisUtil.incr("yang");
+                    System.out.println(Thread.currentThread().getName() + "  执行结束!");
+                }
+            });
+        }
+        pool.shutdown();
+    }
 }
