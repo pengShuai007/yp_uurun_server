@@ -26,3 +26,28 @@
 * 静态方法➕synchronized形式
 
 类锁在多个runnable实例多线程调用下保证同步执行，解决了对象锁中描述的问题。
+## springboot操作redis
+### spring自带redisTemplate操作redis
+**相关类：**
+RedisConfig、FastJson2JsonRedisSerializer、RedisTemplate、RedisUtil、RedisTestController
+### Jedis操作redis
+**相关类：**
+RedisConfigJedis、RedisByJedisUtil、RedisTestController
+### redisTemplate 与 Jedis区别
+Jedis是Redis官方推荐的面向Java的操作Redis的客户端；
+redisTemplate是SpringDataRedis对JedisApi的高度封装；
+redisTemplate比Jedis多了自动管理连接池的特性，官方推荐使用redisTemplate方式；
+## redis是单线程还是多线程的，线程安全吗
+redis是单线程的
+
+redis是线程安全的
+
+RedisTestController类syncAddRedisValue方法采用线程池方式用100个线程对redis中一个key进行加1操作；
+执行完成后，指定key的value增加了100，数据正常。
+
+redis是如何保证线程安全的，首先redis是内存数据库，在内存中进行运算，速度快，其次采用线程封闭的概念，在单线程内完成所有任务。（这块暂时理解不到位）
+
+
+## redis实现分布式锁
+
+## 如何看懂注解实现方式（例如@Value）
