@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.logging.Logger;
 
 /**
@@ -25,6 +28,9 @@ public class RedisTestController{
 
     @Autowired
     RedisByJedisUtil redisByJedisUtil;
+
+    @Autowired
+    private JedisPool jedisPool;
 
     private static final Logger logger = Logger.getLogger("RedisTestController");
 
@@ -70,5 +76,32 @@ public class RedisTestController{
             });
         }
         pool.shutdown();
+    }
+
+    @RequestMapping("/addLock")
+    @ResponseBody
+    public String addLock(){
+        Jedis jedis = jedisPool.getResource();
+        String key = "yang";
+        String requestId = "asdfghjklqwertyuiop";
+        int expireTime = 300000; //毫秒
+        boolean result = DistributedLockByRedis.tryGetDistributedLock(jedis,key,requestId,expireTime);
+        if(result){
+            return "加锁成功";
+        }
+        return "加锁失败";
+    }
+
+    @RequestMapping("/releaseLock")
+    @ResponseBody
+    public String releaseLock(){
+        Jedis jedis = jedisPool.getResource();
+        String key = "yang";
+        String requestId = "asdfghjklqwertyuiop";
+        boolean result = DistributedLockByRedis.releaseDistributedLock(jedis,key,requestId);
+        if(result){
+            return "解锁成功";
+        }
+        return "解锁失败";
     }
 }
