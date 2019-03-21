@@ -84,3 +84,7 @@ redis是如何保证线程安全的，首先redis是内存数据库，在内存�
 ## 大华面试
 
 详见：大华面试问题汇总.md
+
+## thoughtworks面试前期题目
+
+具体内容在包：com.pengshuai.school.interview.thoughtWorks下面
