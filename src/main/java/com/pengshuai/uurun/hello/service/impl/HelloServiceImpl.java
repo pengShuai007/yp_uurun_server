@@ -2,6 +2,8 @@ package com.pengshuai.uurun.hello.service.impl;
 
 import com.pengshuai.uurun.hello.dao.HelloDao;
 import com.pengshuai.uurun.hello.entity.HelloEntity;
+import com.pengshuai.uurun.hello.entity.Orders;
+import com.pengshuai.uurun.hello.entity.Person;
 import com.pengshuai.uurun.hello.service.HelloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -75,5 +77,25 @@ public class HelloServiceImpl implements HelloService {
             result = true;
         }
         return result;
+    }
+
+    /**
+     * 一对多测试
+     * @return
+     */
+    @Override
+    public List<Person> selectPersons() {
+        List<Person> personList = helloDao.selectPersons();
+        return personList;
+    }
+
+    /**
+     * 多对一测试
+     * @return
+     */
+    @Override
+    public List<Orders> selectOrders() {
+        List<Orders> ordersList = helloDao.selectOrders();
+        return ordersList;
     }
 }

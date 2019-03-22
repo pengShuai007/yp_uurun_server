@@ -75,7 +75,17 @@ redis是如何保证线程安全的，首先redis是内存数据库，在内存�
 
 * 锁的释放须使用lua脚本，保证操作的原子性，锁释放包含了get、判断、del三个步骤，必须保证三者的一致性。
 
+## mybatis实现一对多多对一查询
+一对多查询：collection
 
+多对一查询：association 
+
+具体实现查看HelloDao.xml
+## mybatis一对多查询时对象没有无参构造函数怎么处理
+
+## mybatis根据实体生成mapper文件属性
+
+## mybatis中# 与 $ 的区别
 
 ## 如何看懂注解实现方式（例如@Value）
 

@@ -3,6 +3,46 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pengshuai.uurun.hello.dao.HelloDao">
+    <resultMap id="personToOrders" type="com.pengshuai.uurun.hello.entity.Person">
+        <id column="p_id" property="id"></id>
+        <result column="p_name" property="pName"></result>
+        <result column="p_age" property="pAge"></result>
+        <result column="p_sex" property="pSex"></result>
+        <result column="p_address" property="pAddress"></result>
+        <result column="p_tel" property="pTel"></result>
+        <result column="p_comment" property="pComment"></result>
+        <result column="p_create_time" property="createTime"></result>
+        <!-- 一对多关系查询 property指的是集合属性的值，ifType指的是集合中的元素类型 -->
+        <collection property="ordersList" ofType="com.pengshuai.uurun.hello.entity.Orders">
+            <id column="o_id" property="id"></id>
+            <result column="order_name" property="orderName"></result>
+            <result column="pay_way" property="payWay"></result>
+            <result column="order_price" property="orderPrice"></result>
+            <result column="order_describe" property="orderDescribe"></result>
+            <result column="o_create_time" property="createTime"></result>
+        </collection>
+    </resultMap>
+
+    <resultMap id="orderMap" type="com.pengshuai.uurun.hello.entity.Orders">
+        <id column="o_id" property="id"></id>
+        <result column="order_name" property="orderName"></result>
+        <result column="pay_way" property="payWay"></result>
+        <result column="order_price" property="orderPrice"></result>
+        <result column="order_describe" property="orderDescribe"></result>
+        <result column="o_create_time" property="createTime"></result>
+        <!-- 多对一的关系；property: 指的是属性的值, javaType：指的是属性的类型-->
+        <association property="person" javaType="com.pengshuai.uurun.hello.entity.Person">
+            <id column="p_id" property="id"></id>
+            <result column="p_name" property="pName"></result>
+            <result column="p_age" property="pAge"></result>
+            <result column="p_sex" property="pSex"></result>
+            <result column="p_address" property="pAddress"></result>
+            <result column="p_tel" property="pTel"></result>
+            <result column="p_comment" property="pComment"></result>
+            <result column="p_create_time" property="createTime"></result>
+        </association>
+    </resultMap>
+
     <select id="queryHello" resultType="com.pengshuai.uurun.hello.entity.HelloEntity">
         SELECT id,username,usersex,userage,address,job FROM hello
     </select>
@@ -29,4 +69,20 @@
     <delete id="deleteHello">
         DELETE FROM hello where id = #{id}
     </delete>
+    
+    <select id="selectPersons" resultMap="personToOrders">
+        SELECT p.id AS p_id, p.p_name, p.p_age, p.p_sex, p.p_address
+            , p.p_tel, p.p_comment, p.create_time AS p_create_time, o.id AS o_id, o.p_id
+            , o.order_name, o.pay_way, o.order_price, o.order_describe, o.create_time AS o_create_time
+        FROM person p, orders o
+        WHERE p.id = o.p_id
+    </select>
+
+    <select id="selectOrders" resultMap="orderMap">
+        SELECT p.id AS p_id, p.p_name, p.p_age, p.p_sex, p.p_address
+        , p.p_tel, p.p_comment, p.create_time AS p_create_time, o.id AS o_id, o.p_id
+        , o.order_name, o.pay_way, o.order_price, o.order_describe, o.create_time AS o_create_time
+        FROM person p, orders o
+        WHERE p.id = o.p_id
+    </select>
 </mapper>

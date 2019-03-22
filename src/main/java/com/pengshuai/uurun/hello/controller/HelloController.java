@@ -1,6 +1,8 @@
 package com.pengshuai.uurun.hello.controller;
 
 import com.pengshuai.uurun.hello.entity.HelloEntity;
+import com.pengshuai.uurun.hello.entity.Orders;
+import com.pengshuai.uurun.hello.entity.Person;
 import com.pengshuai.uurun.hello.service.HelloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -64,5 +66,17 @@ public class HelloController {
         boolean result = helloService.deleteHello(id);
         map.put("success",result);
         return map;
+    }
+
+    @RequestMapping("/oneToManyTest")
+    public List<Person> selectPersons(){
+        List<Person> personList = helloService.selectPersons();
+        return personList;
+    }
+
+    @RequestMapping("/manyToOneTest")
+    public List<Orders> selectOrders(){
+        List<Orders> ordersList = helloService.selectOrders();
+        return ordersList;
     }
 }
