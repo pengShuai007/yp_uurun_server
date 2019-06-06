@@ -104,3 +104,9 @@ $表示连接符，在反射生成SQL语句时就会替换成对应的参数值�
 ## thoughtworks面试前期题目
 
 具体内容在包：com.pengshuai.school.interview.thoughtWorks下面
+
+## springBoot + mybatis + sqlite
+
+代码在sqlite相关包下，sqlite测试数据文件在data目录下
+请求URL：
+http://localhost:8088/uu/sqliteDemo/getList
