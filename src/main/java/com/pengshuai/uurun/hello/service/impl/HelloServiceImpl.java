@@ -22,7 +22,8 @@ public class HelloServiceImpl implements HelloService {
 
     @Override
     public List<HelloEntity> queryHello() {
-        return helloDao.queryHello();
+//        return helloDao.queryHello();
+        return helloDao.testSqlFlag();
     }
 
     @Override

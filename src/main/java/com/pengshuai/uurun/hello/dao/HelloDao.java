@@ -13,6 +13,8 @@ import java.util.List;
 public interface HelloDao {
     List<HelloEntity> queryHello();
 
+    List<HelloEntity> testSqlFlag();
+
     HelloEntity queryHelloById(int id);
 
     int insertHello(HelloEntity hello);

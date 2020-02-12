@@ -43,6 +43,14 @@
         </association>
     </resultMap>
 
+    <sql id="testSql">
+        SELECT id,username,usersex,userage,address,job FROM hello
+    </sql>
+    
+    <select id="testSqlFlag" resultType="com.pengshuai.uurun.hello.entity.HelloEntity">
+        <include refid="testSql"></include>
+    </select>
+    
     <select id="queryHello" resultType="com.pengshuai.uurun.hello.entity.HelloEntity">
         SELECT id,username,usersex,userage,address,job FROM hello
     </select>
