@@ -1,6 +1,8 @@
 package com.pengshuai.uurun.hello.dao;
 
 import com.pengshuai.uurun.hello.entity.HelloEntity;
+import com.pengshuai.uurun.hello.entity.Orders;
+import com.pengshuai.uurun.hello.entity.Person;
 
 import java.util.List;
 
@@ -11,6 +13,8 @@ import java.util.List;
 public interface HelloDao {
     List<HelloEntity> queryHello();
 
+    List<HelloEntity> testSqlFlag();
+
     HelloEntity queryHelloById(int id);
 
     int insertHello(HelloEntity hello);
@@ -18,4 +22,8 @@ public interface HelloDao {
     int updateHello(HelloEntity hello);
 
     int deleteHello(int id);
+
+    List<Person> selectPersons();
+
+    List<Orders> selectOrders();
 }

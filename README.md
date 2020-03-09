@@ -75,8 +75,24 @@ redis是如何保证线程安全的，首先redis是内存数据库，在内存�
 
 * 锁的释放须使用lua脚本，保证操作的原子性，锁释放包含了get、判断、del三个步骤，必须保证三者的一致性。
 
+## mybatis实现一对多多对一查询
+一对多查询：collection
 
+多对一查询：association 
 
+具体实现查看HelloDao.xml
+## mybatis一对多查询时对象没有无参构造函数怎么处理
+
+## mybatis根据实体生成mapper文件属性
+
+## mybatis中# 与 $ 的区别
+二者都用于动态生成SQL语句
+
+其中#表示占位符，在反射生成SQL语句时替换为？,在SQL执行时将对应的?转为对应的参数；
+
+$表示连接符，在反射生成SQL语句时就会替换成对应的参数值；表名为可变参数时使用$符，如果在查询条件中使用$符，则可能存在SQL注入风险；
+
+其中#将参数以字符串拼接，可有效防止SQL注入；$则是直接拼接。
 ## 如何看懂注解实现方式（例如@Value）
 
 # 面试篇
@@ -88,3 +104,9 @@ redis是如何保证线程安全的，首先redis是内存数据库，在内存�
 ## thoughtworks面试前期题目
 
 具体内容在包：com.pengshuai.school.interview.thoughtWorks下面
+
+## springBoot + mybatis + sqlite
+
+代码在sqlite相关包下，sqlite测试数据文件在data目录下
+请求URL：
+http://localhost:8088/uu/sqliteDemo/getList
